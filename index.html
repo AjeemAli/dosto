@@ -33,7 +33,7 @@
       to { background: white; }
     }
     .rotate {
-      animation: rotateScreen 3s linear;
+      animation: rotateScreen 10s linear;
     }
     @keyframes rotateScreen {
       0% { transform: rotate(0deg); }
@@ -85,18 +85,18 @@
     setTimeout(() => {
       document.body.classList.add('blink');
       document.body.classList.add('rotate');
-    }, 3000);
+    }, 10000);
 
     setTimeout(() => {
       document.body.classList.remove('blink');
-    }, 6000);
+    }, 25000);
 
     // Show Just Kidding message with effects
     setTimeout(() => {
       document.body.innerHTML = '<h1 style="color:green">Just kidding! 😜</h1>';
       createBalloons();
       createSparks();
-    }, 6000);
+    }, 25000);
 
     // Balloons floating up
     function createBalloons() {
