@@ -1,12 +1,116 @@
 <!DOCTYPE html>
 <html>
-<body style="background:black;color:red;font-size:50px;text-align:center;padding-top:100px">
+<head>
+  <style>
+    body {
+      background: black;
+      color: red;
+      font-size: 50px;
+      text-align: center;
+      padding-top: 100px;
+      overflow: hidden;
+    }
+    .moving-light {
+      position: absolute;
+      top: 20px;
+      width: 50px;
+      height: 50px;
+      background: red;
+      border-radius: 50%;
+      animation: moveLight 2s linear infinite;
+    }
+    @keyframes moveLight {
+      0% { left: 0; }
+      50% { left: calc(100% - 50px); }
+      100% { left: 0; }
+    }
+    .blink {
+      animation: blinkEffect 0.2s alternate infinite;
+    }
+    @keyframes blinkEffect {
+      from { background: black; }
+      to { background: white; }
+    }
+    .balloon {
+      position: absolute;
+      bottom: -100px;
+      width: 50px;
+      height: 70px;
+      background: pink;
+      border-radius: 50% 50% 45% 45%;
+      animation: floatBalloon 5s linear forwards;
+    }
+    @keyframes floatBalloon {
+      to { transform: translateY(-800px); opacity: 0; }
+    }
+    .spark {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      background: yellow;
+      border-radius: 50%;
+      animation: sparkle 1s linear infinite;
+    }
+    @keyframes sparkle {
+      0% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(2); opacity: 0.5; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+  <div class="moving-light"></div>
   <h1>⚠️ VIRUS DETECTED!</h1>
-  <p>Your PC will crash in 5 seconds... 😈</p>
+  <p>Your PC will crash in <span id="timer">5</span> seconds... 😈</p>
+
   <script>
+    // Countdown timer
+    let timeLeft = 5;
+    const timerEl = document.getElementById('timer');
+    const interval = setInterval(() => {
+      timeLeft--;
+      timerEl.textContent = timeLeft;
+      if (timeLeft === 0) clearInterval(interval);
+    }, 1000);
+
+    // Screen blink effect for 3 seconds
     setTimeout(() => {
-      document.body.innerHTML = '<h1 style="color:green">Just kidding! 😜</h1>'; 
-    }, 5000);
+      document.body.classList.add('blink');
+    }, 3000);
+
+    setTimeout(() => {
+      document.body.classList.remove('blink');
+    }, 6000);
+
+    // Show Just Kidding message with effects
+    setTimeout(() => {
+      document.body.innerHTML = '<h1 style="color:green">Just kidding! 😜</h1>';
+      createBalloons();
+      createSparks();
+    }, 6000);
+
+    // Balloons floating up
+    function createBalloons() {
+      for (let i = 0; i < 10; i++) {
+        const balloon = document.createElement('div');
+        balloon.className = 'balloon';
+        balloon.style.left = Math.random() * 100 + 'vw';
+        balloon.style.background = `hsl(${Math.random() * 360}, 70%, 60%)`;
+        document.body.appendChild(balloon);
+      }
+    }
+
+    // Sparkle effects
+    function createSparks() {
+      for (let i = 0; i < 30; i++) {
+        const spark = document.createElement('div');
+        spark.className = 'spark';
+        spark.style.left = Math.random() * 100 + 'vw';
+        spark.style.top = Math.random() * 100 + 'vh';
+        spark.style.background = `hsl(${Math.random() * 360}, 100%, 50%)`;
+        document.body.appendChild(spark);
+      }
+    }
   </script>
 </body>
 </html>
