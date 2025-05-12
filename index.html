@@ -9,6 +9,7 @@
       text-align: center;
       padding-top: 100px;
       overflow: hidden;
+      transition: transform 1s linear;
     }
     .moving-light {
       position: absolute;
@@ -30,6 +31,13 @@
     @keyframes blinkEffect {
       from { background: black; }
       to { background: white; }
+    }
+    .rotate {
+      animation: rotateScreen 3s linear;
+    }
+    @keyframes rotateScreen {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(1080deg); } /* 3 rounds (360*3) */
     }
     .balloon {
       position: absolute;
@@ -76,6 +84,7 @@
     // Screen blink effect for 3 seconds
     setTimeout(() => {
       document.body.classList.add('blink');
+      document.body.classList.add('rotate');
     }, 3000);
 
     setTimeout(() => {
