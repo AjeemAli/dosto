@@ -1,4 +1,4 @@
-<!-- <!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
   <style>
@@ -33,7 +33,7 @@
       to { background: white; }
     }
     .rotate {
-      animation: rotateScreen 10s linear;
+      animation: rotateScreen 3s linear;
     }
     @keyframes rotateScreen {
       0% { transform: rotate(0deg); }
@@ -85,18 +85,18 @@
     setTimeout(() => {
       document.body.classList.add('blink');
       document.body.classList.add('rotate');
-    }, 10000);
+    }, 3000);
 
     setTimeout(() => {
       document.body.classList.remove('blink');
-    }, 25000);
+    }, 6000);
 
     // Show Just Kidding message with effects
     setTimeout(() => {
       document.body.innerHTML = '<h1 style="color:green">Just kidding! 😜</h1>';
       createBalloons();
       createSparks();
-    }, 25000);
+    }, 6000);
 
     // Balloons floating up
     function createBalloons() {
@@ -121,183 +121,5 @@
       }
     }
   </script>
-</body>
-</html>
- -->
-
- <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>हमारी शादी की यादें</title>
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            overflow: hidden;
-            font-family: 'Arial', sans-serif;
-            background-color: #000;
-        }
-        
-        .background-image {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            opacity: 0.2;
-            background-size: cover;
-            background-position: center;
-            transition: background-image 1.5s ease-in-out;
-        }
-        
-        .slideshow-container {
-            position: relative;
-            width: 80%;
-            height: 80vh;
-            margin: 5% auto;
-            overflow: hidden;
-            box-shadow: 0 0 30px rgba(255, 215, 0, 0.5);
-            border-radius: 10px;
-        }
-        
-        .slide {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            opacity: 0;
-            transition: all 1.5s ease-in-out;
-            background-size: contain;
-            background-repeat: no-repeat;
-            background-position: center;
-            border: 15px solid;
-            border-image: linear-gradient(45deg, #ff9933, #ffffff, #138808) 1;
-        }
-        
-        .slide.active {
-            opacity: 1;
-            transform: scale(1);
-            animation: borderGlow 3s infinite alternate;
-        }
-        
-        .caption {
-            position: absolute;
-            bottom: 20px;
-            left: 0;
-            width: 100%;
-            text-align: center;
-            color: white;
-            font-size: 24px;
-            text-shadow: 2px 2px 4px #000;
-            background-color: rgba(0, 0, 0, 0.5);
-            padding: 10px;
-        }
-        
-        @keyframes borderGlow {
-            0% { box-shadow: 0 0 20px #ff9933; }
-            50% { box-shadow: 0 0 30px #ffffff; }
-            100% { box-shadow: 0 0 20px #138808; }
-        }
-        
-        .fade-in {
-            animation: fadeIn 2s;
-        }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        
-        .title {
-            text-align: center;
-            color: #fff;
-            margin-top: 20px;
-            font-size: 3em;
-            text-shadow: 0 0 10px gold;
-            animation: titleGlow 3s infinite alternate;
-        }
-        
-        @keyframes titleGlow {
-            from { text-shadow: 0 0 10px gold; }
-            to { text-shadow: 0 0 20px #ff9933, 0 0 30px #ffffff; }
-        }
-    </style>
-</head>
-<body>
-    <h1 class="title fade-in">हमारी शादी की खूबसूरत यादें</h1>
-    
-    <div class="background-image" id="bgImage"></div>
-    
-    <div class="slideshow-container" id="slideshow">
-        <!-- Slides will be added dynamically by JavaScript -->
-    </div>
-
-    <script>
-        // Replace these with your Cloudinary image URLs
-        const imageUrls = [
-            {
-                url: "https://res.cloudinary.com/demo/image/upload/wedding1.jpg",
-                caption: "हमारी पहली मुलाकात"
-            },
-            {
-                url: "https://res.cloudinary.com/demo/image/upload/wedding2.jpg",
-                caption: "सगाई समारोह"
-            },
-            {
-                url: "https://res.cloudinary.com/demo/image/upload/wedding3.jpg",
-                caption: "मेहंदी रात"
-            },
-            {
-                url: "https://res.cloudinary.com/demo/image/upload/wedding4.jpg",
-                caption: "विवाह समारोह"
-            },
-            {
-                url: "https://res.cloudinary.com/demo/image/upload/wedding5.jpg",
-                caption: "विदाई का पल"
-            }
-        ];
-        
-        // Initialize slideshow
-        const slideshow = document.getElementById('slideshow');
-        const bgImage = document.getElementById('bgImage');
-        
-        imageUrls.forEach((img, index) => {
-            const slide = document.createElement('div');
-            slide.className = 'slide';
-            slide.style.backgroundImage = `url(${img.url})`;
-            
-            const caption = document.createElement('div');
-            caption.className = 'caption';
-            caption.textContent = img.caption;
-            
-            slide.appendChild(caption);
-            slideshow.appendChild(slide);
-        });
-        
-        const slides = document.querySelectorAll('.slide');
-        let currentSlide = 0;
-        
-        // Show first slide
-        slides[currentSlide].classList.add('active');
-        bgImage.style.backgroundImage = `url(${imageUrls[currentSlide].url})`;
-        
-        // Change slide every 5 seconds
-        setInterval(() => {
-            slides[currentSlide].classList.remove('active');
-            
-            currentSlide = (currentSlide + 1) % slides.length;
-            
-            slides[currentSlide].classList.add('active');
-            bgImage.style.backgroundImage = `url(${imageUrls[currentSlide].url})`;
-            
-            // Add random animation
-            const animations = ['fadeIn', 'zoomIn', 'slideInRight', 'slideInLeft', 'rotateIn'];
-            const randomAnim = animations[Math.floor(Math.random() * animations.length)];
-            slides[currentSlide].style.animation = `${randomAnim} 1.5s`;
-            
-        }, 5000);
-    </script>
 </body>
 </html>
