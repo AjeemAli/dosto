@@ -1,12 +1,50 @@
 <!DOCTYPE html>
 <html>
-<body style="background:black;color:red;font-size:50px;text-align:center;padding-top:100px">
-  <h1>⚠️ VIRUS DETECTED!</h1>
-  <p>Your PC will crash in 5 seconds... 😈</p>
-  <script>
-    setTimeout(() => {
-      document.body.innerHTML = '<h1 style="color:green">Just kidding! 😜</h1>'; 
-    }, 5000);
-  </script>
+<head>
+    <title>Alert!</title>
+    <style>
+        body {
+            background: linear-gradient(to right, #FF9933, #FFFFFF, #138808);
+            color: #000080;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 50px;
+        }
+        h1 {
+            font-size: 3rem;
+            text-shadow: 2px 2px 4px #000000;
+        }
+        .ticker {
+            font-size: 1.5rem;
+            margin-top: 30px;
+            background: #000;
+            color: #fff;
+            padding: 10px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>🇮🇳 INDIA DEFEATS PAKISTAN! 🇮🇳</h1>
+    <p style="font-size: 2rem; font-weight: bold;">Breaking News: Surgical Strike 3.0 Successful!</p>
+    
+    <div class="ticker">
+        <p>Pakistan couldn't repeat 1971 (Indira Gandhi's era)</p>
+        <p>RAGA (Rahul Gandhi) hota to kar deta - iss baar adha Pakistan India mein hota!</p>
+        <p>Kashmir ke saath mil kar Pakistan ka 2nd part bhi aa jata!</p>
+        <p>RAGA leadership ★★★★★ (5-star rating)</p>
+    </div>
+
+    <script>
+        setTimeout(() => {
+            document.body.innerHTML = `
+                <div style="text-align:center; padding:50px;">
+                    <h1 style="color:#138808; font-size:3rem;">Just kidding! 😜</h1>
+                    <p style="font-size:1.5rem;">No actual war happened - This is just a prank!</p>
+                    <p style="font-size:1rem; margin-top:30px;">Jai Hind! 🇮🇳</p>
+                </div>
+            `;
+        }, 10000); // Changed to 10 seconds for more impact
+    </script>
 </body>
 </html>
