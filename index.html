@@ -1,125 +1,131 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8">
+  <title>Animated Name Entry</title>
   <style>
     body {
-      background: black;
-      color: red;
-      font-size: 50px;
-      text-align: center;
-      padding-top: 100px;
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #00c6ff, #0072ff);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
       overflow: hidden;
-      transition: transform 1s linear;
     }
-    .moving-light {
+
+    .screen {
       position: absolute;
-      top: 20px;
-      width: 50px;
-      height: 50px;
-      background: red;
-      border-radius: 50%;
-      animation: moveLight 2s linear infinite;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      text-align: center;
+      transition: transform 1s ease, opacity 1s ease;
     }
-    @keyframes moveLight {
-      0% { left: 0; }
-      50% { left: calc(100% - 50px); }
-      100% { left: 0; }
+
+    .hidden {
+      pointer-events: none;
+      opacity: 0;
+      transform: translateY(100%);
     }
-    .blink {
-      animation: blinkEffect 0.2s alternate infinite;
+
+    .container {
+      background: rgba(0, 0, 0, 0.3);
+      padding: 40px;
+      border-radius: 15px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.5);
     }
-    @keyframes blinkEffect {
-      from { background: black; }
-      to { background: white; }
+
+    input {
+      padding: 10px 20px;
+      font-size: 18px;
+      border: none;
+      border-radius: 10px;
+      outline: none;
+      margin-top: 20px;
     }
-    .rotate {
-      animation: rotateScreen 3s linear;
+
+    button {
+      padding: 10px 25px;
+      margin-top: 20px;
+      font-size: 18px;
+      border: none;
+      border-radius: 10px;
+      background-color: #ff4b2b;
+      color: white;
+      cursor: pointer;
+      transition: background 0.3s;
     }
-    @keyframes rotateScreen {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(1080deg); } /* 3 rounds (360*3) */
+
+    button:hover {
+      background-color: #ff416c;
     }
-    .balloon {
-      position: absolute;
-      bottom: -100px;
-      width: 50px;
-      height: 70px;
-      background: pink;
-      border-radius: 50% 50% 45% 45%;
-      animation: floatBalloon 5s linear forwards;
+
+    .shayari {
+      font-style: italic;
+      margin-top: 20px;
+      font-size: 20px;
     }
-    @keyframes floatBalloon {
-      to { transform: translateY(-800px); opacity: 0; }
+
+    .fade-in {
+      animation: fadeIn 1s forwards;
     }
-    .spark {
-      position: absolute;
-      width: 10px;
-      height: 10px;
-      background: yellow;
-      border-radius: 50%;
-      animation: sparkle 1s linear infinite;
-    }
-    @keyframes sparkle {
-      0% { transform: scale(1); opacity: 1; }
-      50% { transform: scale(2); opacity: 0.5; }
-      100% { transform: scale(1); opacity: 1; }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
     }
   </style>
 </head>
 <body>
-  <div class="moving-light"></div>
-  <h1>⚠️ VIRUS DETECTED!</h1>
-  <p>Your PC will crash in <span id="timer">5</span> seconds... 😈</p>
 
-  <script>
-    // Countdown timer
-    let timeLeft = 5;
-    const timerEl = document.getElementById('timer');
-    const interval = setInterval(() => {
-      timeLeft--;
-      timerEl.textContent = timeLeft;
-      if (timeLeft === 0) clearInterval(interval);
-    }, 1000);
+<div class="screen" id="inputScreen">
+  <div class="container">
+    <h1>Enter your name</h1>
+    <input type="text" id="nameInput" placeholder="Your Name">
+    <br>
+    <button onclick="showCongrats()">Submit</button>
+  </div>
+</div>
 
-    // Screen blink effect for 3 seconds
-    setTimeout(() => {
-      document.body.classList.add('blink');
-      document.body.classList.add('rotate');
-    }, 3000);
+<div class="screen hidden" id="congratsScreen">
+  <div class="container fade-in">
+    <h1>Congratulations <span id="userName"></span>!</h1>
+    <p>Aaj ki tareekh hai: <strong>13 May</strong></p>
+    <div class="shayari">
+      Teri muskurahat meri pehchaan hai,<br>
+      Tera khush rehna meri shaan hai,<br>
+      Aaj maine tujhe yaad kiya hai dosto,<br>
+      Kyonki aaj <span id="userName2"></span>, tu mera armaan hai.
+    </div>
+  </div>
+</div>
 
-    setTimeout(() => {
-      document.body.classList.remove('blink');
-    }, 6000);
-
-    // Show Just Kidding message with effects
-    setTimeout(() => {
-      document.body.innerHTML = '<h1 style="color:green">Just kidding! 😜</h1>';
-      createBalloons();
-      createSparks();
-    }, 6000);
-
-    // Balloons floating up
-    function createBalloons() {
-      for (let i = 0; i < 10; i++) {
-        const balloon = document.createElement('div');
-        balloon.className = 'balloon';
-        balloon.style.left = Math.random() * 100 + 'vw';
-        balloon.style.background = `hsl(${Math.random() * 360}, 70%, 60%)`;
-        document.body.appendChild(balloon);
-      }
+<script>
+  function showCongrats() {
+    const name = document.getElementById('nameInput').value.trim();
+    if (name === "") {
+      alert("Please enter your name.");
+      return;
     }
 
-    // Sparkle effects
-    function createSparks() {
-      for (let i = 0; i < 30; i++) {
-        const spark = document.createElement('div');
-        spark.className = 'spark';
-        spark.style.left = Math.random() * 100 + 'vw';
-        spark.style.top = Math.random() * 100 + 'vh';
-        spark.style.background = `hsl(${Math.random() * 360}, 100%, 50%)`;
-        document.body.appendChild(spark);
-      }
-    }
-  </script>
+    document.getElementById('userName').innerText = name;
+    document.getElementById('userName2').innerText = name;
+
+    // Animate input screen out
+    document.getElementById('inputScreen').classList.add('hidden');
+
+    // Animate congrats screen in with fade effect
+    setTimeout(() => {
+      document.getElementById('congratsScreen').classList.remove('hidden');
+    }, 300);
+  }
+</script>
+
 </body>
 </html>
