@@ -1,246 +1,159 @@
-Aapke liye ek sundar aur romantic homepage ka HTML, CSS, aur placeholder images ke sath design kiya hai. Isme 10 rows hain, har row me ek pyara love card hai, jisme alag-alag shayari (wife, love, birthday, romance, couple) aur ek image lagi hai. Aap images ko apni pasand se replace bhi kar sakte hain.
-
-**index.html**  
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Romantic Love Shayari Cards</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>My Love Story</title>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;600&display=swap" rel="stylesheet">
   <style>
     body {
       margin: 0;
-      padding: 0;
       font-family: 'Poppins', sans-serif;
-      background: linear-gradient(120deg, #ffb6c1 0%, #ffe4e1 100%);
-      min-height: 100vh;
+      background-color: #fff0f5;
       color: #333;
     }
-    .container {
-      max-width: 1100px;
-      margin: 40px auto;
-      padding: 0 16px;
-    }
-    h1 {
-      font-family: 'Great Vibes', cursive;
-      color: #e75480;
-      font-size: 3rem;
-      text-align: center;
-      margin-bottom: 16px;
-      letter-spacing: 2px;
-    }
-    .cards-grid {
-      display: grid;
-      grid-template-rows: repeat(10, 1fr);
-      row-gap: 32px;
-    }
-    .love-card {
+
+    header {
+      background: url('https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?auto=format&fit=crop&w=1950&q=80') no-repeat center center/cover;
+      height: 60vh;
       display: flex;
       align-items: center;
-      gap: 32px;
-      background: rgba(255,255,255,0.9);
-      border-radius: 18px;
-      box-shadow: 0 4px 32px 0 rgba(255, 105, 180, 0.15);
-      overflow: hidden;
-      transition: transform 0.2s;
+      justify-content: center;
+      color: white;
+      text-shadow: 2px 2px 4px #000;
     }
-    .love-card:hover {
-      transform: scale(1.03);
-      box-shadow: 0 10px 32px 0 rgba(255, 20, 147, 0.25);
-    }
-    .love-card img {
-      width: 170px;
-      height: 170px;
-      object-fit: cover;
-      border-radius: 15px 0 0 15px;
-      flex-shrink: 0;
-      background: #eee;
-    }
-    .card-content {
-      padding: 24px 16px;
-      flex: 1;
-    }
-    .card-title {
-      font-size: 1.5rem;
-      color: #e75480;
-      margin-bottom: 12px;
+
+    header h1 {
       font-family: 'Great Vibes', cursive;
+      font-size: 64px;
+      text-align: center;
+      padding: 0 20px;
     }
-    .shayari {
-      font-size: 1.1rem;
-      color: #555;
+
+    section {
+      padding: 50px 20px;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .section-heading {
+      font-size: 36px;
+      font-family: 'Great Vibes', cursive;
+      text-align: center;
+      color: #c2185b;
+      margin-bottom: 30px;
+    }
+
+    .card-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+    }
+
+    .card {
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      width: 250px;
+      overflow: hidden;
+      transition: transform 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+    .card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
+
+    .card p {
+      padding: 15px;
       font-style: italic;
-      line-height: 1.7;
+      font-size: 16px;
+      text-align: center;
+      color: #555;
     }
-    @media (max-width: 700px) {
-      .love-card {
-        flex-direction: column;
-        align-items: stretch;
+
+    @media(max-width: 768px) {
+      header h1 {
+        font-size: 40px;
       }
-      .love-card img {
-        width: 100%;
-        height: 180px;
-        border-radius: 15px 15px 0 0;
+      .section-heading {
+        font-size: 28px;
+      }
+      .card {
+        width: 90%;
       }
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <h1>Romantic Shayari Cards For Your Love</h1>
-    <div class="cards-grid">
 
-      <!-- Wife Shayari Card -->
-      <div class="love-card">
-        <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=400&q=80" alt="Wife Love">
-        <div class="card-content">
-          <div class="card-title">Wife Shayari</div>
-          <div class="shayari">
-            Zindagi ki har raah aasan ho jaaye,<br>
-            Jab tum saath ho, toh har pal shandaar ho jaaye.<br>
-            Tum ho meri zindagi ki sabse khoobsurat paheli,<br>
-            Tumse hi hai meri duniya rangeen aur suhani.
-          </div>
-        </div>
-      </div>
+<!-- Banner -->
+<header>
+  <h1>To the Love of My Life 💖</h1>
+</header>
 
-      <!-- Love Shayari Card -->
-      <div class="love-card">
-        <img src="https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=400&q=80" alt="Pure Love">
-        <div class="card-content">
-          <div class="card-title">Love Shayari</div>
-          <div class="shayari">
-            Tumhe chahna meri fitrat mein hai,<br>
-            Tumhara khayal hi meri ibadat mein hai.<br>
-            Mohabbat se khoobsurat kuch bhi nahi,<br>
-            Tum meri zindagi ho, bas itna hi kaafi hai.
-          </div>
-        </div>
-      </div>
-
-      <!-- Birthday Shayari Card -->
-      <div class="love-card">
-        <img src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=400&q=80" alt="Birthday Love">
-        <div class="card-content">
-          <div class="card-title">Birthday Shayari</div>
-          <div class="shayari">
-            Janamdin ki dher saari shubhkamnayein,<br>
-            Khushbuon se mehka rahe aapka yeh din.<br>
-            Har saal aapka yeh din yuhi khilkhilaye,<br>
-            Dua hai meri, aap sada yunhi muskurayein.
-          </div>
-        </div>
-      </div>
-
-      <!-- Romantic Shayari Card -->
-      <div class="love-card">
-        <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80" alt="Romantic Couple">
-        <div class="card-content">
-          <div class="card-title">Romantic Shayari</div>
-          <div class="shayari">
-            Teri baahon mein hai meri manzil,<br>
-            Teri khushboo mein basa hai mera dil.<br>
-            Ishq mein dooba yeh dil hai mera,<br>
-            Bas tu hi tu hai yahan, baaki sab kuch fanaa.
-          </div>
-        </div>
-      </div>
-
-      <!-- Couple Shayari Card -->
-      <div class="love-card">
-        <img src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=400&q=80" alt="Couple Together">
-        <div class="card-content">
-          <div class="card-title">Couple Shayari</div>
-          <div class="shayari">
-            Tera mera saath, jaise chand aur chaandni,<br>
-            Tu mere dil mein, jaise saans aur zindagi.<br>
-            Saath tere guzarta hai har pal pyaara,<br>
-            Yeh bandhan hai sabse haseen is duniya mein saara.
-          </div>
-        </div>
-      </div>
-
-      <!-- Cute Love Card -->
-      <div class="love-card">
-        <img src="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=400&q=80" alt="Cute Love">
-        <div class="card-content">
-          <div class="card-title">Cute Love Shayari</div>
-          <div class="shayari">
-            Teri muskurahat meri pehchaan hai,<br>
-            Tera saath hi meri jaan hai.<br>
-            Tere bina sab kuch adhoora hai,<br>
-            Tu hai toh sab kuch poora hai.
-          </div>
-        </div>
-      </div>
-
-      <!-- Sweet Heart Card -->
-      <div class="love-card">
-        <img src="https://images.unsplash.com/photo-1473187983305-f615310e7daa?auto=format&fit=crop&w=400&q=80" alt="Sweet Heart">
-        <div class="card-content">
-          <div class="card-title">Sweetheart Shayari</div>
-          <div class="shayari">
-            Tujhse hi hai meri har subah suhani,<br>
-            Teri baaton mein hai kuch baat nirali.<br>
-            Dil karta hai bas tujhse hi baat karu,<br>
-            Tere sang hi apni zindagi guzar lu.
-          </div>
-        </div>
-      </div>
-
-      <!-- Soulmate Card -->
-      <div class="love-card">
-        <img src="https://images.unsplash.com/photo-1464037866556-6812c9d1c72e?auto=format&fit=crop&w=400&q=80" alt="Soulmate">
-        <div class="card-content">
-          <div class="card-title">Soulmate Shayari</div>
-          <div class="shayari">
-            Tere saath hi lagta hai sab kuch apna,<br>
-            Tere bina zindagi hai bilkul sapna.<br>
-            Teri har ek baat hai dil ke kareeb,<br>
-            Tu hai mera pyaar, tu hai mera naseeb.
-          </div>
-        </div>
-      </div>
-
-      <!-- Life Partner Card -->
-      <div class="love-card">
-        <img src="https://images.unsplash.com/photo-1455656678494-4d1dcd3aee30?auto=format&fit=crop&w=400&q=80" alt="Life Partner">
-        <div class="card-content">
-          <div class="card-title">Life Partner Shayari</div>
-          <div class="shayari">
-            Tere saath jeena hai, tere saath marna hai,<br>
-            Teri har khushi mein hi mera sapna hai.<br>
-            Zindagi mein sab kuch pa liya,<br>
-            Jab se tu zindagi mein aaya.
-          </div>
-        </div>
-      </div>
-
-      <!-- Forever Love Card -->
-      <div class="love-card">
-        <img src="https://images.unsplash.com/photo-1429087969512-1e85aab2683d?auto=format&fit=crop&w=400&q=80" alt="Forever Love">
-        <div class="card-content">
-          <div class="card-title">Forever Love Shayari</div>
-          <div class="shayari">
-            Tumhara pyaar hai meri zindagi ka armaan,<br>
-            Tere bina sab kuch hai suna suna, veeran.<br>
-            Wada hai mera, hamesha rahunga saath,<br>
-            Tere bina adhura hai mera yeh saara jahaan.
-          </div>
-        </div>
-      </div>
-
+<!-- Section 1 -->
+<section>
+  <div class="section-heading">Our Sweet Memories</div>
+  <div class="card-row">
+    <div class="card">
+      <img src="https://source.unsplash.com/300x200/?couple,love" />
+      <p>Tum ho to lagta hai sab kuch hai, tum bin to sab khaali khaali.</p>
+    </div>
+    <div class="card">
+      <img src="https://source.unsplash.com/301x200/?romance,valentine" />
+      <p>Teri har ek muskurahat meri zindagi ki wajah hai.</p>
+    </div>
+    <div class="card">
+      <img src="https://source.unsplash.com/302x200/?holding,hands" />
+      <p>Tumse milkar har pal pyaara lagta hai, jaise sapna sa ho.</p>
     </div>
   </div>
+</section>
+
+<!-- Section 2 -->
+<section>
+  <div class="section-heading">Why I Love You</div>
+  <div class="card-row">
+    <div class="card">
+      <img src="https://source.unsplash.com/303x200/?love,letters" />
+      <p>Jab tum paas hoti ho to dil ko sukoon milta hai.</p>
+    </div>
+    <div class="card">
+      <img src="https://source.unsplash.com/304x200/?flowers,romantic" />
+      <p>Tum meri har dua ka sabse haseen jawaab ho.</p>
+    </div>
+    <div class="card">
+      <img src="https://source.unsplash.com/305x200/?couple,smile" />
+      <p>Tumhara saath meri har takleef ko pyaar mein badal deta hai.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Section 3 -->
+<section>
+  <div class="section-heading">Forever & Always</div>
+  <div class="card-row">
+    <div class="card">
+      <img src="https://source.unsplash.com/306x200/?romantic,night" />
+      <p>Main har janam mein sirf tumhe chahunga 💞</p>
+    </div>
+    <div class="card">
+      <img src="https://source.unsplash.com/307x200/?couple,hug" />
+      <p>Mere har khwab mein sirf tum ho, meri har dua mein bhi.</p>
+    </div>
+    <div class="card">
+      <img src="https://source.unsplash.com/308x200/?beach,love" />
+      <p>Tum meri zindagi ka sabse khoobsurat hisa ho.</p>
+    </div>
+  </div>
+</section>
+
 </body>
 </html>
-```
-
-**Aap isko apne index.html me daal sakte hain.**  
-- Shayari aur images ko apni pasand se update bhi kar sakte hain.
-- Responsive aur attractive design diya gaya hai.
-- Mobile pe bhi acche se dikhega.
-
-Kisi aur customization ke liye zarur batayein!
