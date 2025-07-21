@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Animated Name Entry</title>
+  <meta charset="UTF-8" />
+  <title>Happy Birthday My Love</title>
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@400;600&display=swap');
+
     body {
       margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background: url('https://images.unsplash.com/photo-1533599029236-0b8ce7efb2fd?auto=format&fit=crop&w=1950&q=80') no-repeat center center/cover;
+      font-family: 'Poppins', sans-serif;
+      background: url('https://images.unsplash.com/photo-1604600171660-ac7c89c9b45b?auto=format&fit=crop&w=1950&q=80') no-repeat center center/cover;
       color: white;
       display: flex;
       align-items: center;
@@ -17,137 +19,130 @@
       position: relative;
     }
 
-    .balloon {
+    .heart {
       position: absolute;
-      width: 50px;
-      height: 70px;
-      background: radial-gradient(circle, #ff4b2b 0%, #ff416c 100%);
-      border-radius: 50% 50% 45% 45%;
-      animation: floatUp 10s linear infinite;
-      opacity: 0.8;
+      width: 20px;
+      height: 20px;
+      background: red;
+      transform: rotate(45deg);
+      animation: floatUp 6s linear infinite;
     }
 
-    .balloon::after {
+    .heart::before,
+    .heart::after {
       content: "";
       position: absolute;
-      bottom: -10px;
-      left: 50%;
-      width: 2px;
+      width: 20px;
       height: 20px;
-      background: white;
-      transform: translateX(-50%);
+      background: red;
+      border-radius: 50%;
+    }
+
+    .heart::before {
+      top: -10px;
+      left: 0;
+    }
+
+    .heart::after {
+      left: -10px;
+      top: 0;
     }
 
     @keyframes floatUp {
-      0% { transform: translateY(100vh) rotate(0deg); opacity: 0.8; }
-      100% { transform: translateY(-150vh) rotate(360deg); opacity: 0; }
+      0% { transform: translateY(100vh) scale(1); opacity: 1; }
+      100% { transform: translateY(-150vh) scale(1.5); opacity: 0; }
     }
 
     .screen {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-      text-align: center;
-      transition: transform 1s ease, opacity 1s ease;
-    }
-
-    .hidden {
-      pointer-events: none;
-      opacity: 0;
-      transform: translateY(100%);
-    }
-
-    .container {
-      background: rgba(0, 0, 0, 0.5);
+      background: rgba(0, 0, 0, 0.6);
       padding: 40px;
-      border-radius: 15px;
-      box-shadow: 0 0 20px rgba(0,0,0,0.5);
+      border-radius: 20px;
+      text-align: center;
+      box-shadow: 0 0 30px rgba(255, 192, 203, 0.4);
+      max-width: 90%;
+      width: 500px;
+      z-index: 2;
     }
 
-    input {
-      padding: 10px 20px;
-      font-size: 18px;
-      border: none;
-      border-radius: 10px;
-      outline: none;
-      margin-top: 20px;
-    }
-
-    button {
-      padding: 10px 25px;
-      margin-top: 20px;
-      font-size: 18px;
-      border: none;
-      border-radius: 10px;
-      background-color: #ff4b2b;
-      color: white;
-      cursor: pointer;
-      transition: background 0.3s;
-    }
-
-    button:hover {
-      background-color: #ff416c;
+    h1 {
+      font-family: 'Great Vibes', cursive;
+      font-size: 48px;
+      color: #ffccd5;
+      margin-bottom: 10px;
     }
 
     .shayari {
       font-style: italic;
+      font-size: 18px;
       margin-top: 20px;
-      font-size: 20px;
+      color: #ffe4ec;
     }
 
-    .fade-in {
-      animation: fadeIn 1s forwards;
+    input, button {
+      padding: 10px 20px;
+      font-size: 18px;
+      border-radius: 10px;
+      border: none;
+      outline: none;
     }
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(30px); }
-      to { opacity: 1; transform: translateY(0); }
+    input {
+      margin-top: 20px;
+      width: 80%;
     }
+
+    button {
+      margin-top: 20px;
+      background-color: #ff4b7d;
+      color: white;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #ff6d9e;
+    }
+
+    .hidden {
+      display: none;
+    }
+
   </style>
 </head>
 <body>
 
-<!-- Balloons -->
-<div class="balloon" style="left: 10%; animation-delay: 0s;"></div>
-<div class="balloon" style="left: 30%; animation-delay: 2s;"></div>
-<div class="balloon" style="left: 50%; animation-delay: 4s;"></div>
-<div class="balloon" style="left: 70%; animation-delay: 6s;"></div>
-<div class="balloon" style="left: 90%; animation-delay: 8s;"></div>
+<!-- Floating Hearts -->
+<div class="heart" style="left: 10%; animation-delay: 0s;"></div>
+<div class="heart" style="left: 30%; animation-delay: 1s;"></div>
+<div class="heart" style="left: 50%; animation-delay: 2s;"></div>
+<div class="heart" style="left: 70%; animation-delay: 3s;"></div>
+<div class="heart" style="left: 90%; animation-delay: 4s;"></div>
 
 <div class="screen" id="inputScreen">
-  <div class="container">
-    <h1>Enter your name</h1>
-    <input type="text" id="nameInput" placeholder="Your Name">
-    <br>
-    <button onclick="showCongrats()">Submit</button>
-  </div>
+  <h1>Happy Birthday, My Love 🎂</h1>
+  <p>Enter your name to begin this lovely surprise 💖</p>
+  <input type="text" id="nameInput" placeholder="Your Name">
+  <br>
+  <button onclick="showMessage()">Show Message</button>
 </div>
 
 <div class="screen hidden" id="congratsScreen">
-  <div class="container fade-in">
-    <h1>Congratulations <span id="userName"></span>!</h1>
-    <p>Aaj ki tareekh hai: <strong>May 13</strong></p>
-    <div class="shayari">
-      May 13 tha, may 13 hoon,<br>
-      May 13 hi rahunga,<br>
-      Tere naam se chalti hai saansein meri,<br>
-      Main khud ko bhi tujhse chhupa na sakunga.
-    </div>
-    <div class="shayari">
-      Teri muskurahat meri pehchaan hai,<br>
-      Tera khush rehna meri shaan hai,<br>
-      Aaj maine tujhe yaad kiya hai dosto,<br>
-      Kyonki aaj <span id="userName2"></span>, tu mera armaan hai.
-    </div>
+  <h1>Happy Birthday <span id="userName"></span>! ❤️</h1>
+  <div class="shayari">
+    Aaj tere liye laayi hai duaon ki mehekti si bahaar,<br>
+    Khushiyo se bhari ho zindagi, ho har khwaab hazaar.<br>
+    Tera saath mere liye ek dua hai har pal,<br>
+    Tu muskuraaye, yeh meri har subah aur shaam ka haal.
+  </div>
+  <div class="shayari">
+    Tere bina adhoora hoon main,<br>
+    Tere saath poora lagta hoon,<br>
+    Janamdin par yeh wada hai mera,<br>
+    Har janam main bas tera hi rahta hoon.
   </div>
 </div>
 
 <script>
-  function showCongrats() {
+  function showMessage() {
     const name = document.getElementById('nameInput').value.trim();
     if (name === "") {
       alert("Please enter your name.");
@@ -155,15 +150,8 @@
     }
 
     document.getElementById('userName').innerText = name;
-    document.getElementById('userName2').innerText = name;
-
-    // Animate input screen out
     document.getElementById('inputScreen').classList.add('hidden');
-
-    // Animate congrats screen in with fade effect
-    setTimeout(() => {
-      document.getElementById('congratsScreen').classList.remove('hidden');
-    }, 300);
+    document.getElementById('congratsScreen').classList.remove('hidden');
   }
 </script>
 
